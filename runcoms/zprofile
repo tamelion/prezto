@@ -17,16 +17,24 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='nvim'
+export VISUAL='nvim'
 export PAGER='less'
+
+#
+# Other env vars
+#
+
+export NPM_CONFIG_PREFIX=~/.local
+export VBOX_USER_HOME=~/vm
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
 #
 # Language
 #
 
 if [[ -z "$LANG" ]]; then
-  export LANG='en_US.UTF-8'
+  export LANG='en_NZ.UTF-8'
 fi
 
 #
@@ -43,7 +51,9 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+  $HOME/.local/{bin,sbin}
   /usr/local/{bin,sbin}
+  $(ruby -e 'print Gem.user_dir')/bin
   $path
 )
 
